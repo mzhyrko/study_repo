@@ -1,0 +1,46 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.venv/
+env/
+venv/
+.env
+*.egg-info/
+*.egg
+dist/
+build/
+
+# C
+*.o
+*.out
+*.exe
+*.so
+*.dSYM/
+*.s
+
+# Ada
+*.o
+*.ali
+*.ads
+*.cmp
+*.gpr
+*.gpr.log
+obj/
+src/
+lib/
+
+# General
+*.log
+*.bak
+*.swp
+.DS_Store
+Thumbs.db
+
+# IDE and Editor specific
+.vscode/
+.idea/
+*.iml
+*.class
+*.jar

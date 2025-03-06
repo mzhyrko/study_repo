@@ -1,0 +1,50 @@
+V "GNAT Lib v13"
+P ZX
+
+RN
+RV NO_FLOATING_POINT
+
+U primes%b		primes.adb		7e3dd2e1 NE OO PK
+W ada%s			ada.ads			ada.ali
+W ada.numerics%s	a-numeri.ads		a-numeri.ali
+W ada.numerics.elementary_functions%s  a-nuelfu.ads  a-nuelfu.ali
+
+U primes%s		primes.ads		5e301056 EE NE OO PK
+
+D ada.ads		20240521074738 76789da1 ada%s
+D a-numeri.ads		20240521074738 84bea7a3 ada.numerics%s
+D a-nuelfu.ads		20240521074738 dc1b3a37 ada.numerics.elementary_functions%s
+D a-ngelfu.ads		20240521074738 58d8ffc8 ada.numerics.generic_elementary_functions%s
+D a-unccon.ads		20240521074738 0e9b276f ada.unchecked_conversion%s
+D primes.ads		20250102191940 5e301056 primes%s
+D primes.adb		20250103093701 fc16f880 primes%b
+D system.ads		20240521074738 426dafb8 system%s
+D s-exctab.ads		20240521074738 91bef6ef system.exception_table%s
+D s-stalib.ads		20240521074738 1c9580f6 system.standard_library%s
+G a e
+G c Z s b [primenumbers primes 3 14 none]
+G c Z s b [prime primes 6 14 none]
+G c Z s b [isprime primes 9 14 none]
+X 1 ada.ads
+16K9*Ada 20e8 7|1r6 2r5
+X 2 a-numeri.ads
+16K13*Numerics 35e17 7|1r10 2r9
+X 3 a-nuelfu.ads
+18K22*Elementary_Functions[4|39] 7|1w19 2r18
+X 4 a-ngelfu.ads
+53V13*Sqrt{float} 7|11s32[3|18]
+X 6 primes.ads
+1K9*Primes 13l5 13e11 7|4b14 45l5 45t11
+3V14*PrimeNumbers{positive} 3>28 7|19b14 28l9 28t21
+3i28 n{positive} 7|19b28 22r23
+6V14*Prime{positive} 6>21 7|30b14 43l9 43t14
+6i21 n{positive} 7|30b21 34r23 38r24
+9V14*IsPrime{boolean} 9>23 7|6b14 17l9 17t16 23s16 35s16
+9i23 n{positive} 7|6b23 8r12 11r45 12r16
+X 7 primes.adb
+11i13 i{integer} 12r22
+20i9 Count{natural} 24m17 24r26 27r25
+22i13 i{integer} 23r24
+31i9 Count{natural} 34r15 36m17 36r26 38r16
+32i9 Candidate{positive} 35r24 39m17 39r30 42r16
+

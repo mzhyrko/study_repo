@@ -1,0 +1,39 @@
+V "GNAT Lib v13"
+P ZX
+
+RN
+
+U totient%b		totient.adb		95bd0f08 NE OO PK
+W ada%s			ada.ads			ada.ali
+W ada.numerics%s	a-numeri.ads		a-numeri.ali
+W ada.numerics.elementary_functions%s  a-nuelfu.ads  a-nuelfu.ali
+
+U totient%s		totient.ads		1432ca6f EE NE OO PK
+
+D ada.ads		20240521074738 76789da1 ada%s
+D a-numeri.ads		20240521074738 84bea7a3 ada.numerics%s
+D a-nuelfu.ads		20240521074738 dc1b3a37 ada.numerics.elementary_functions%s
+D a-ngelfu.ads		20240521074738 58d8ffc8 ada.numerics.generic_elementary_functions%s
+D a-unccon.ads		20240521074738 0e9b276f ada.unchecked_conversion%s
+D system.ads		20240521074738 426dafb8 system%s
+D s-exctab.ads		20240521074738 91bef6ef system.exception_table%s
+D s-stalib.ads		20240521074738 1c9580f6 system.standard_library%s
+D totient.ads		20250107073150 1432ca6f totient%s
+D totient.adb		20250107073234 5d94ff50 totient%b
+G a e
+G c Z s b [totient totient 2 14 none]
+X 1 ada.ads
+16K9*Ada 20e8 10|1r6 1r45
+X 2 a-numeri.ads
+16K13*Numerics 35e17 10|1r10 1r49
+X 3 a-nuelfu.ads
+18K22*Elementary_Functions[4|39] 10|1w19 1r58
+X 9 totient.ads
+1K9*Totient 3l5 3e12 10|3b14 36l5 36t12
+2V14*Totient{positive} 2>23 10|14b14 34l9 34t16
+2i23 n{positive} 10|14b23 15r30 16r30
+X 10 totient.adb
+15i9 Result{positive} 24m17 24r27 24r36 30m13 30r23 30r32 33r16
+16i9 Temp{positive} 19r24 20r16 21r23 22m21 22r29 29r12 30r41
+17i9 I{positive} 19r15 19r19 20r25 21r32 22r36 24r45 26m13 26r18
+
