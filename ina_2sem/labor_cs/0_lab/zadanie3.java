@@ -1,4 +1,4 @@
-import java.lang.Math;
+//import java.lang.Math;
 
 public class zadanie3 {
   public static int div(int n) {
