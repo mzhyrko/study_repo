@@ -1,0 +1,325 @@
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.util.HashSet;
+import java.util.Random;
+import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
+
+public class WolfHareSimulation {
+    public static void main(String[] args) {
+        int rows = 30, cols = 40, numHares = 10, k = 100;
+        Board board = new Board(rows, cols);
+
+        JFrame frame = new JFrame("Wolf & Hares Simulation");
+        SimulationPanel panel = new SimulationPanel(board);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setExtendedState(JFrame.MAXIMIZED_BOTH); // Fullscreen
+        frame.setUndecorated(false);
+        frame.add(panel);
+        frame.setVisible(true);
+
+        Random rand = new Random();
+        Set<Point> occupied = new HashSet<>();
+
+        // Create wolf
+        Point wolfPos;
+        do {
+            wolfPos = new Point(rand.nextInt(rows), rand.nextInt(cols));
+        } while (!occupied.add(wolfPos));
+
+        Wolf wolf = new Wolf(board, wolfPos.x, wolfPos.y, k);
+        board.placeAnimal(wolf);
+        new Thread(wolf).start();
+
+        // Create hares
+        for (int i = 0; i < numHares; i++) {
+            Point p;
+            do {
+                p = new Point(rand.nextInt(rows), rand.nextInt(cols));
+            } while (!occupied.add(p));
+
+            Hare hare = new Hare(board, p.x, p.y, k);
+            board.placeAnimal(hare);
+            new Thread(hare).start();
+        }
+
+        panel.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                int cellWidth = panel.getWidth() / cols;
+                int cellHeight = panel.getHeight() / rows;
+                int x = e.getY() / cellHeight;
+                int y = e.getX() / cellWidth;
+                Animal a = board.getAnimalAt(x, y);
+                if (a != null) {
+                    a.togglePause();
+                }
+            }
+        });
+
+        new javax.swing.Timer(100, e -> panel.repaint()).start();
+    }
+}
+
+abstract class Animal implements Runnable {
+    protected volatile boolean alive = true;
+    protected int x, y, k;
+    protected final Board board;
+    protected static final Random random = new Random();
+    protected final Object pauseLock = new Object();
+    protected volatile boolean paused = false;
+
+    public Animal(Board board, int x, int y, int k) {
+        this.board = board;
+        this.x = x;
+        this.y = y;
+        this.k = k;
+    }
+
+    public abstract int getX();
+    public abstract int getY();
+
+    public void togglePause() {
+        if (!alive) return;
+        paused = !paused;
+        synchronized (pauseLock) {
+            if (!paused) pauseLock.notifyAll();
+        }
+    }
+
+    protected void sleepRandom() throws InterruptedException {
+        Thread.sleep(k / 2 + random.nextInt(k));
+    }
+
+    protected void checkPaused() {
+        if (!alive) return;
+        synchronized (pauseLock) {
+            while (paused) {
+                try {
+                    pauseLock.wait();
+                } catch (InterruptedException ignored) {}
+            }
+        }
+    }
+}
+
+class Hare extends Animal {
+    public void die() {
+        alive = false;
+    }
+    public Hare(Board board, int x, int y, int k) {
+        super(board, x, y, k);
+    }
+
+    @Override
+    public int getX() { return x; }
+    @Override
+    public int getY() { return y; }
+
+    public void run() {
+        while (true) {
+            if (!alive) break;
+            checkPaused();
+            try {
+                sleepRandom();
+            } catch (InterruptedException e) {
+                break;
+            }
+
+            int[] dx = {-1, -1, -1, 0, 0, 1, 1, 1};
+            int[] dy = {-1, 0, 1, -1, 1, -1, 0, 1};
+            Wolf wolf = board.getWolf();
+            if (!alive || wolf == null) continue;
+
+            int wx = wolf.getX();
+            int wy = wolf.getY();
+            List<Point> options = new ArrayList<>();
+            double maxDist = -1;
+
+            for (int i = 0; i < 8; i++) {
+                int nx = x + dx[i];
+                int ny = y + dy[i];
+                if (board.isFree(nx, ny)) {
+                    double d = dist(nx, ny, wx, wy);
+                    if (d > maxDist) {
+                        maxDist = d;
+                        options.clear();
+                        options.add(new Point(nx, ny));
+                    } else if (d == maxDist) {
+                        options.add(new Point(nx, ny));
+                    }
+                }
+            }
+            if (!options.isEmpty()) {
+                Point move = options.get(random.nextInt(options.size()));
+                board.moveAnimal(this, move.x, move.y);
+                x = move.x;
+                y = move.y;
+            }
+        }
+    }
+
+    private double dist(int x1, int y1, int x2, int y2) {
+        return Math.sqrt((x1 - x2) * (long)(x1 - x2) + (y1 - y2) * (long)(y1 - y2));
+    }
+}
+
+class Wolf extends Animal {
+    public void die() {
+        alive = false;
+    }
+    private int rest = 0;
+
+    public Wolf(Board board, int x, int y, int k) {
+        super(board, x, y, k);
+    }
+
+    @Override
+    public int getX() { return x; }
+    @Override
+    public int getY() { return y; }
+
+    public void run() {
+        while (true) {
+            checkPaused();
+            try {
+                sleepRandom();
+            } catch (InterruptedException e) {
+                break;
+            }
+
+            if (rest > 0) {
+                rest--;
+                continue;
+            }
+
+            Hare nearest = board.getNearestHare(x, y);
+            if (nearest == null) {
+    break; // No hares left, stop only the wolf thread
+}
+
+            int dx = Integer.compare(nearest.getX(), x);
+            int dy = Integer.compare(nearest.getY(), y);
+
+            int nx = x + dx;
+            int ny = y + dy;
+
+            if (nx == nearest.getX() && ny == nearest.getY() && !nearest.paused) {
+                nearest.die();
+                board.removeAnimal(nearest);
+                rest = 5;
+            }
+
+            if (board.isFree(nx, ny)) {
+                board.moveAnimal(this, nx, ny);
+                x = nx;
+                y = ny;
+            }
+        }
+    }
+}
+
+class Board {
+    private final Animal[][] grid;
+    private final int rows, cols;
+
+    public Board(int rows, int cols) {
+        this.rows = rows;
+        this.cols = cols;
+        grid = new Animal[rows][cols];
+    }
+
+    public synchronized boolean isFree(int x, int y) {
+        return isValid(x, y) && grid[x][y] == null;
+    }
+
+    public synchronized void moveAnimal(Animal a, int newX, int newY) {
+        if (!isValid(newX, newY)) return;
+        grid[a.getX()][a.getY()] = null;
+        grid[newX][newY] = a;
+    }
+
+    public synchronized void placeAnimal(Animal a) {
+        grid[a.getX()][a.getY()] = a;
+    }
+
+    public synchronized void removeAnimal(Animal a) {
+        grid[a.getX()][a.getY()] = null;
+    }
+
+    public synchronized Animal getAnimalAt(int x, int y) {
+        return isValid(x, y) ? grid[x][y] : null;
+    }
+
+    public synchronized Hare getNearestHare(int x, int y) {
+        Hare nearest = null;
+        double minDist = Double.MAX_VALUE;
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < cols; j++) {
+                Animal a = grid[i][j];
+                if (a instanceof Hare && !((Hare) a).paused) {
+                    double d = Math.sqrt((x - i) * (long)(x - i) + (y - j) * (long)(y - j));
+                    if (d < minDist) {
+                        minDist = d;
+                        nearest = (Hare) a;
+                    }
+                }
+            }
+        }
+        return nearest;
+    }
+
+    public synchronized Wolf getWolf() {
+        for (Animal[] row : grid) {
+            for (Animal a : row) {
+                if (a instanceof Wolf) return (Wolf) a;
+            }
+        }
+        return null;
+    }
+
+    private boolean isValid(int x, int y) {
+        return x >= 0 && y >= 0 && x < rows && y < cols;
+    }
+
+    public Animal[][] getGrid() {
+        return grid;
+    }
+}
+
+class SimulationPanel extends JPanel {
+    private final Board board;
+
+    public SimulationPanel(Board board) {
+        this.board = board;
+    }
+
+    @Override
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        int rows = board.getGrid().length;
+        int cols = board.getGrid()[0].length;
+        int cellWidth = getWidth() / cols;
+        int cellHeight = getHeight() / rows;
+
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < cols; j++) {
+                Animal a = board.getAnimalAt(i, j);
+                if (a instanceof Wolf) {
+                    g.setColor(Color.RED);
+                } else if (a instanceof Hare) {
+                    g.setColor(a.paused ? Color.BLUE : Color.GREEN);
+                } else {
+                    g.setColor(Color.WHITE);
+                }
+                g.fillRect(j * cellWidth, i * cellHeight, cellWidth, cellHeight);
+                g.setColor(Color.BLACK);
+                g.drawRect(j * cellWidth, i * cellHeight, cellWidth, cellHeight);
+            }
+        }
+    }
+}
+
