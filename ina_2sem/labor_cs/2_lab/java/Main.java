@@ -6,9 +6,10 @@ public class Main {
                     int num = Integer.parseInt(arg);
                     String roman = ArabRzym.arab2rzym(num);
                     System.out.println(arg + " -> " + roman);
-                } else {
+                } else
                     int arabic = ArabRzym.rzym2arab(arg.toUpperCase());
                     System.out.println(arg + " -> " + arabic);
+
                 }
             } catch (NumberFormatException e) {
                 System.err.println("Invalid number: " + arg);
