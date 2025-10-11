@@ -9,4 +9,4 @@ def krzyzyk(n):
         print()
 
 #main
-krzyzyk(4)
+krzyzyk(5)

@@ -10,7 +10,6 @@ def silnia(n):
     return wynik
 
 def get_cyfra_form(num):
-    """Zwraca poprawną formę słowa 'cyfra' dla danej liczby."""
     if num == 1:
         return "cyfrę"
     last_two_digits = num % 100

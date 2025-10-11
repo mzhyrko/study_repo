@@ -15,9 +15,9 @@ def losuj_haslo(n):
 
 #main
 print("Hasła długości 8:")
-for _ in range(10):
+for _ in range(100):
      print(losuj_haslo(8))
 
 print("\nHasła długości 12:")
-for _ in range(10):
+for _ in range(100):
      print(losuj_haslo(12))
