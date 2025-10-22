@@ -1,0 +1,462 @@
+(* Content-type: application/vnd.wolfram.cdf.text *)
+
+(*** Wolfram CDF File ***)
+(* http://www.wolfram.com/cdf *)
+
+(* CreatedBy='Wolfram 14.1' *)
+
+(*************************************************************************)
+(*                                                                       *)
+(*                                                                       *)
+(*  This file was created under the Wolfram Enterprise licensing terms.  *)
+(*                                                                       *)
+(*       For additional information concerning CDF licensing see:        *)
+(*                                                                       *)
+(*        www.wolfram.com/cdf/adopting-cdf/licensing-options.html        *)
+(*                                                                       *)
+(*                                                                       *)
+(*                                                                       *)
+(*************************************************************************)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[      1060,         20]
+NotebookDataLength[     16068,        439]
+NotebookOptionsPosition[     16264,        431]
+NotebookOutlinePosition[     16660,        447]
+CellTagsIndexPosition[     16617,        444]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", 
+   RowBox[{"Definicja", " ", "funkcji", " ", "f", 
+    RowBox[{"(", "x", ")"}]}], "*)"}], 
+  RowBox[{
+   RowBox[{
+    RowBox[{
+     RowBox[{"f", "[", "x_", "]"}], ":=", 
+     RowBox[{"162", " ", 
+      RowBox[{
+       RowBox[{"(", 
+        RowBox[{"1", "-", 
+         RowBox[{"Cos", "[", 
+          RowBox[{"5", " ", "x"}], "]"}]}], ")"}], "/", 
+       RowBox[{"x", "^", "2"}]}]}]}], ";"}], "\[IndentingNewLine]", "\n", 
+   RowBox[{"(*", 
+    RowBox[{
+     RowBox[{"Obliczenie", " ", "warto\:015bci", " ", "dla", " ", "x"}], "=", 
+     
+     RowBox[{
+      RowBox[{"10", "^", 
+       RowBox[{"(", 
+        RowBox[{"-", "i"}], ")"}]}], " ", "w", " ", "standardowej", " ", 
+      "precyzji"}]}], "*)"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"iValues", "=", 
+     RowBox[{"Range", "[", 
+      RowBox[{"11", ",", "20"}], "]"}]}], ";"}], "\n", 
+   RowBox[{
+    RowBox[{"wynikiStandard", "=", 
+     RowBox[{"Table", "[", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"10", "^", 
+          RowBox[{"(", 
+           RowBox[{"-", "i"}], ")"}]}], ",", 
+         RowBox[{"N", "[", 
+          RowBox[{
+           RowBox[{"f", "[", 
+            RowBox[{"10", "^", 
+             RowBox[{"(", 
+              RowBox[{"-", "i"}], ")"}]}], "]"}], ",", "20"}], "]"}]}], "}"}],
+        ",", 
+       RowBox[{"{", 
+        RowBox[{"i", ",", "iValues"}], "}"}]}], "]"}]}], ";"}], "\n", 
+   RowBox[{
+    RowBox[{"Print", "[", 
+     RowBox[{"\"\<Wyniki w standardowej precyzji: \>\"", ",", 
+      RowBox[{"TableForm", "[", 
+       RowBox[{"wynikiStandard", ",", 
+        RowBox[{"TableHeadings", "->", 
+         RowBox[{"{", 
+          RowBox[{"None", ",", 
+           RowBox[{"{", 
+            RowBox[{"\"\<x\>\"", ",", "\"\<f(x)\>\""}], "}"}]}], "}"}]}]}], 
+       "]"}]}], "]"}], ";"}], "\[IndentingNewLine]", "\n", 
+   RowBox[{"(*", 
+    RowBox[{
+    "Propozycja", " ", "u\:017cycia", " ", "rozwini\:0119cia", " ", 
+     "Taylora"}], "*)"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"fAproks", "[", "x_", "]"}], ":=", 
+     RowBox[{"162", "*", 
+      RowBox[{"(", 
+       RowBox[{
+        RowBox[{"25", "/", "2"}], "-", 
+        RowBox[{"625", " ", 
+         RowBox[{
+          RowBox[{"x", "^", "2"}], "/", "24"}]}]}], ")"}]}]}], ";"}], " ", 
+   RowBox[{"(*", 
+    RowBox[{
+    "Przybli\:017cenie", " ", "dla", " ", "ma\[LSlash]ych", " ", "x"}], 
+    "*)"}], "\n", 
+   RowBox[{
+    RowBox[{"wynikiAproks", "=", 
+     RowBox[{"Table", "[", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"10", "^", 
+          RowBox[{"(", 
+           RowBox[{"-", "i"}], ")"}]}], ",", 
+         RowBox[{"N", "[", 
+          RowBox[{
+           RowBox[{"fAproks", "[", 
+            RowBox[{"10", "^", 
+             RowBox[{"(", 
+              RowBox[{"-", "i"}], ")"}]}], "]"}], ",", "20"}], "]"}]}], "}"}],
+        ",", 
+       RowBox[{"{", 
+        RowBox[{"i", ",", "iValues"}], "}"}]}], "]"}]}], ";"}], "\n", 
+   RowBox[{
+    RowBox[{"Print", "[", 
+     RowBox[{"\"\<Wyniki przybli\:017cone (Taylorem): \>\"", ",", 
+      RowBox[{"TableForm", "[", 
+       RowBox[{"wynikiAproks", ",", 
+        RowBox[{"TableHeadings", "->", 
+         RowBox[{"{", 
+          RowBox[{"None", ",", 
+           RowBox[{"{", 
+            RowBox[{"\"\<x\>\"", ",", "\"\<fAproks(x)\>\""}], "}"}]}], 
+          "}"}]}]}], "]"}]}], "]"}], ";"}], "\[IndentingNewLine]", "\n", 
+   RowBox[{"(*", 
+    RowBox[{
+    "Por\[OAcute]wnanie", " ", "z", " ", "wysok\:0105", " ", 
+     "precyzj\:0105"}], "*)"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"wynikiWysoka", "=", 
+     RowBox[{"Table", "[", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"10", "^", 
+          RowBox[{"(", 
+           RowBox[{"-", "i"}], ")"}]}], ",", 
+         RowBox[{"SetPrecision", "[", 
+          RowBox[{
+           RowBox[{"f", "[", 
+            RowBox[{"10", "^", 
+             RowBox[{"(", 
+              RowBox[{"-", "i"}], ")"}]}], "]"}], ",", "50"}], "]"}]}], "}"}],
+        ",", 
+       RowBox[{"{", 
+        RowBox[{"i", ",", "iValues"}], "}"}]}], "]"}]}], ";"}], "\n", 
+   RowBox[{
+    RowBox[{"Print", "[", 
+     RowBox[{"\"\<Wyniki z wysok\:0105 precyzj\:0105: \>\"", ",", 
+      RowBox[{"TableForm", "[", 
+       RowBox[{"wynikiWysoka", ",", 
+        RowBox[{"TableHeadings", "->", 
+         RowBox[{"{", 
+          RowBox[{"None", ",", 
+           RowBox[{"{", 
+            RowBox[{"\"\<x\>\"", ",", "\"\<f(x) wysoka precyzja\>\""}], 
+            "}"}]}], "}"}]}]}], "]"}]}], "]"}], ";"}], "\n", 
+   "\[IndentingNewLine]", 
+   RowBox[{"(*", 
+    RowBox[{"Komentarz", ":", 
+     RowBox[{
+     "Sprawdzenie", " ", "zgodno\:015bci", " ", "przybli\:017cenia", " ", "z",
+       " ", "warto\:015bciami", " ", "rzeczywistymi"}]}], "*)"}]}]}]], "Input",\
+
+ CellChangeTimes->{{3.9699484114818172`*^9, 3.9699484114827137`*^9}},
+ CellLabel->"In[1]:=",ExpressionUUID->"b02acae3-9762-48e3-9f39-af847e77f6b5"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Wyniki w standardowej precyzji: \"\>", "\[InvisibleSpace]", 
+   TagBox[
+    TagBox[GridBox[{
+       {
+        TagBox["\<\"x\"\>",
+         HoldForm], 
+        TagBox["\<\"f(x)\"\>",
+         HoldForm]},
+       {
+        FractionBox["1", "100000000000"], 
+        "2024.99999999999999999957812499999999999681`20."},
+       {
+        FractionBox["1", "1000000000000"], 
+        "2024.99999999999999999999578125000001273712`20."},
+       {
+        FractionBox["1", "10000000000000"], 
+        "2024.99999999999999999999995781249948527492`20."},
+       {
+        FractionBox["1", "100000000000000"], 
+        "2024.99999999999999999999999957814536003468`20."},
+       {
+        FractionBox["1", "1000000000000000"], 
+        "2024.99999999999999999999999999578125`20."},
+       {
+        FractionBox["1", "10000000000000000"], 
+        "2024.9999999999999999999999999999578125`20."},
+       {
+        FractionBox["1", "100000000000000000"], 
+        "2024.999999999999999999999999999999578125`20."},
+       {
+        FractionBox["1", "1000000000000000000"], 
+        "2024.99999999999999999999999999999999578125`20."},
+       {
+        FractionBox["1", "10000000000000000000"], 
+        "2024.99999999999999999999999999999999995779`20."},
+       {
+        FractionBox["1", "100000000000000000000"], 
+        "2025.00000000000000000000000000000000000577`20."}
+      },
+      GridBoxAlignment->{"Columns" -> {{Left}}, "Rows" -> {{Baseline}}},
+      GridBoxDividers->{
+       "Columns" -> {{False}}, "Rows" -> {False, True, {False}, False}},
+      GridBoxSpacings->{"Columns" -> {
+          Offset[0.27999999999999997`], {
+           Offset[2.0999999999999996`]}, 
+          Offset[0.27999999999999997`]}, "Rows" -> {
+          Offset[0.2], {
+           Offset[0.4]}, 
+          Offset[0.2]}}],
+     {None, OutputFormsDump`HeadedColumns}],
+    Function[BoxForm`e$, 
+     TableForm[BoxForm`e$, TableHeadings -> {None, {"x", "f(x)"}}]]]}],
+  SequenceForm["Wyniki w standardowej precyzji: ", 
+   TableForm[{{
+      Rational[1, 100000000000], 
+      2024.99999999999999999957812499999999999681`20.}, {
+      Rational[1, 1000000000000], 
+      2024.99999999999999999999578125000001273712`20.}, {
+      Rational[1, 10000000000000], 
+      2024.99999999999999999999995781249948527492`20.}, {
+      Rational[1, 100000000000000], 
+      2024.99999999999999999999999957814536003468`20.}, {
+      Rational[1, 1000000000000000], 
+      2024.99999999999999999999999999578125`20.}, {
+      Rational[1, 10000000000000000], 
+      2024.9999999999999999999999999999578125`20.}, {
+      Rational[1, 100000000000000000], 
+      2024.999999999999999999999999999999578125`20.}, {
+      Rational[1, 1000000000000000000], 
+      2024.99999999999999999999999999999999578125`20.}, {
+      Rational[1, 10000000000000000000], 
+      2024.99999999999999999999999999999999995779`20.}, {
+      Rational[1, 100000000000000000000], 
+      2025.00000000000000000000000000000000000577`20.}}, 
+    TableHeadings -> {None, {"x", "f(x)"}}]],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.9699484180903797`*^9},
+ CellLabel->
+  "During evaluation of \
+In[1]:=",ExpressionUUID->"9bb6f5d5-f335-45f2-b06a-51d1b124cc87"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Wyniki przybli\:017cone (Taylorem): \"\>", "\[InvisibleSpace]", 
+   TagBox[
+    TagBox[GridBox[{
+       {
+        TagBox["\<\"x\"\>",
+         HoldForm], 
+        TagBox["\<\"fAproks(x)\"\>",
+         HoldForm]},
+       {
+        FractionBox["1", "100000000000"], "2024.999999999999999999578125`20."},
+       {
+        FractionBox["1", "1000000000000"], 
+        "2024.99999999999999999999578125`20."},
+       {
+        FractionBox["1", "10000000000000"], 
+        "2024.9999999999999999999999578125`20."},
+       {
+        FractionBox["1", "100000000000000"], 
+        "2024.999999999999999999999999578125`20."},
+       {
+        FractionBox["1", "1000000000000000"], 
+        "2024.99999999999999999999999999578125`20."},
+       {
+        FractionBox["1", "10000000000000000"], 
+        "2024.9999999999999999999999999999578125`20."},
+       {
+        FractionBox["1", "100000000000000000"], 
+        "2024.999999999999999999999999999999578125`20."},
+       {
+        FractionBox["1", "1000000000000000000"], 
+        "2024.99999999999999999999999999999999578125`20."},
+       {
+        FractionBox["1", "10000000000000000000"], 
+        "2024.99999999999999999999999999999999995781`20."},
+       {
+        FractionBox["1", "100000000000000000000"], 
+        "2024.99999999999999999999999999999999999958`20."}
+      },
+      GridBoxAlignment->{"Columns" -> {{Left}}, "Rows" -> {{Baseline}}},
+      GridBoxDividers->{
+       "Columns" -> {{False}}, "Rows" -> {False, True, {False}, False}},
+      GridBoxSpacings->{"Columns" -> {
+          Offset[0.27999999999999997`], {
+           Offset[2.0999999999999996`]}, 
+          Offset[0.27999999999999997`]}, "Rows" -> {
+          Offset[0.2], {
+           Offset[0.4]}, 
+          Offset[0.2]}}],
+     {None, OutputFormsDump`HeadedColumns}],
+    Function[BoxForm`e$, 
+     TableForm[BoxForm`e$, TableHeadings -> {None, {"x", "fAproks(x)"}}]]]}],
+  SequenceForm["Wyniki przybli\:017cone (Taylorem): ", 
+   TableForm[{{
+      Rational[1, 100000000000], 2024.999999999999999999578125`20.}, {
+      Rational[1, 1000000000000], 2024.99999999999999999999578125`20.}, {
+      Rational[1, 10000000000000], 2024.9999999999999999999999578125`20.}, {
+      Rational[1, 100000000000000], 2024.999999999999999999999999578125`20.}, {
+      Rational[1, 1000000000000000], 
+      2024.99999999999999999999999999578125`20.}, {
+      Rational[1, 10000000000000000], 
+      2024.9999999999999999999999999999578125`20.}, {
+      Rational[1, 100000000000000000], 
+      2024.999999999999999999999999999999578125`20.}, {
+      Rational[1, 1000000000000000000], 
+      2024.99999999999999999999999999999999578125`20.}, {
+      Rational[1, 10000000000000000000], 
+      2024.99999999999999999999999999999999995781`20.}, {
+      Rational[1, 100000000000000000000], 
+      2024.99999999999999999999999999999999999958`20.}}, 
+    TableHeadings -> {None, {"x", "fAproks(x)"}}]],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.9699484180984898`*^9},
+ CellLabel->
+  "During evaluation of \
+In[1]:=",ExpressionUUID->"f875e604-d498-4fb8-890e-cde5a41afbd3"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Wyniki z wysok\:0105 precyzj\:0105: \"\>", "\[InvisibleSpace]", 
+   TagBox[
+    TagBox[GridBox[{
+       {
+        TagBox["\<\"x\"\>",
+         HoldForm], 
+        TagBox["\<\"f(x) wysoka precyzja\"\>",
+         HoldForm]},
+       {
+        FractionBox["1", "100000000000"], 
+        "2024.999999999999999999578125`28.79588001734407"},
+       {
+        FractionBox["1", "1000000000000"], 
+        "2024.99999999999999999999578125`26.79588001734407"},
+       {
+        FractionBox["1", "10000000000000"], 
+        "2024.9999999999999999999999578125`24.79588001734407"},
+       {
+        FractionBox["1", "100000000000000"], 
+        "2024.999999999999999999999999578125`22.79588001734407"},
+       {
+        FractionBox["1", "1000000000000000"], 
+        "2024.99999999999999999999999999578125`20.79588001734407"},
+       {
+        FractionBox["1", "10000000000000000"], 
+        "2024.9999999999999999999999999999578125`18.79588001734407"},
+       {
+        FractionBox["1", "100000000000000000"], 
+        "2024.999999999999999999999999999999578125`16.795880017344068"},
+       {
+        FractionBox["1", "1000000000000000000"], 
+        "2024.99999999999999999999999999999999578125`14.795880017344073"},
+       {
+        FractionBox["1", "10000000000000000000"], 
+        "2024.99999999999999999999999999999999995779`12.79588001734407"},
+       {
+        FractionBox["1", "100000000000000000000"], 
+        "2025.`10.795880017344073"}
+      },
+      GridBoxAlignment->{"Columns" -> {{Left}}, "Rows" -> {{Baseline}}},
+      GridBoxDividers->{
+       "Columns" -> {{False}}, "Rows" -> {False, True, {False}, False}},
+      GridBoxSpacings->{"Columns" -> {
+          Offset[0.27999999999999997`], {
+           Offset[2.0999999999999996`]}, 
+          Offset[0.27999999999999997`]}, "Rows" -> {
+          Offset[0.2], {
+           Offset[0.4]}, 
+          Offset[0.2]}}],
+     {None, OutputFormsDump`HeadedColumns}],
+    Function[BoxForm`e$, 
+     TableForm[
+     BoxForm`e$, TableHeadings -> {None, {"x", "f(x) wysoka precyzja"}}]]]}],
+  SequenceForm["Wyniki z wysok\:0105 precyzj\:0105: ", 
+   TableForm[{{
+      Rational[1, 100000000000], 
+      2024.999999999999999999578125`28.79588001734407}, {
+      Rational[1, 1000000000000], 
+      2024.99999999999999999999578125`26.79588001734407}, {
+      Rational[1, 10000000000000], 
+      2024.9999999999999999999999578125`24.79588001734407}, {
+      Rational[1, 100000000000000], 
+      2024.999999999999999999999999578125`22.79588001734407}, {
+      Rational[1, 1000000000000000], 
+      2024.99999999999999999999999999578125`20.79588001734407}, {
+      Rational[1, 10000000000000000], 
+      2024.9999999999999999999999999999578125`18.79588001734407}, {
+      Rational[1, 100000000000000000], 
+      2024.999999999999999999999999999999578125`16.795880017344068}, {
+      Rational[1, 1000000000000000000], 
+      2024.99999999999999999999999999999999578125`14.795880017344073}, {
+      Rational[1, 10000000000000000000], 
+      2024.99999999999999999999999999999999995779`12.79588001734407}, {
+      Rational[1, 100000000000000000000], 2025.`10.795880017344073}}, 
+    TableHeadings -> {None, {"x", "f(x) wysoka precyzja"}}]],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.969948418100274*^9},
+ CellLabel->
+  "During evaluation of \
+In[1]:=",ExpressionUUID->"11438e58-1aba-4ab7-95c2-4d5d61d2330b"]
+}, Open  ]]
+}, Open  ]]
+},
+WindowSize->{1288.5, 1052.25},
+WindowMargins->{{1440, -1288.5}, {Automatic, 0}},
+FrontEndVersion->"14.1 for Linux x86 (64-bit) (July 16, 2024)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"177a4eef-fb63-44e8-813d-34845419de15"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[1482, 35, 4975, 146, 360, "Input",ExpressionUUID->"b02acae3-9762-48e3-9f39-af847e77f6b5"],
+Cell[CellGroupData[{
+Cell[6482, 185, 3224, 81, 260, "Print",ExpressionUUID->"9bb6f5d5-f335-45f2-b06a-51d1b124cc87"],
+Cell[9709, 268, 3125, 76, 260, "Print",ExpressionUUID->"f875e604-d498-4fb8-890e-cde5a41afbd3"],
+Cell[12837, 346, 3399, 81, 264, "Print",ExpressionUUID->"11438e58-1aba-4ab7-95c2-4d5d61d2330b"]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)
+

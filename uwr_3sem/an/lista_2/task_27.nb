@@ -1,0 +1,301 @@
+(* Content-type: application/vnd.wolfram.cdf.text *)
+
+(*** Wolfram CDF File ***)
+(* http://www.wolfram.com/cdf *)
+
+(* CreatedBy='Wolfram 14.1' *)
+
+(*************************************************************************)
+(*                                                                       *)
+(*                                                                       *)
+(*  This file was created under the Wolfram Enterprise licensing terms.  *)
+(*                                                                       *)
+(*       For additional information concerning CDF licensing see:        *)
+(*                                                                       *)
+(*        www.wolfram.com/cdf/adopting-cdf/licensing-options.html        *)
+(*                                                                       *)
+(*                                                                       *)
+(*                                                                       *)
+(*************************************************************************)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[      1060,         20]
+NotebookDataLength[      9672,        280]
+NotebookOptionsPosition[      9687,        270]
+NotebookOutlinePosition[     10083,        286]
+CellTagsIndexPosition[     10040,        283]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", 
+   RowBox[{"Sprawdzenie", " ", "warto\:015bci", " ", "f", 
+    RowBox[{"(", "0.01", ")"}], " ", "w", " ", "standardowej", " ", 
+    "precyzji"}], "*)"}], 
+  RowBox[{
+   RowBox[{
+    RowBox[{
+     RowBox[{"f", "[", "x_", "]"}], ":=", 
+     RowBox[{
+      RowBox[{"(", 
+       RowBox[{
+        RowBox[{"Sqrt", "[", 
+         RowBox[{
+          RowBox[{"12150", " ", 
+           RowBox[{"x", "^", "15"}]}], "+", "9"}], "]"}], "-", "3"}], ")"}], 
+      "/", 
+      RowBox[{"x", "^", "15"}]}]}], ";"}], "\n", 
+   RowBox[{
+    RowBox[{"wynik", "=", 
+     RowBox[{"f", "[", "0.01", "]"}]}], ";"}], "\n", 
+   RowBox[{
+    RowBox[{"Print", "[", 
+     RowBox[{
+     "\"\<Warto\:015b\[CAcute] f(0.01) w standardowej precyzji: \>\"", ",", 
+      RowBox[{"N", "[", 
+       RowBox[{"wynik", ",", "20"}], "]"}]}], "]"}], ";"}], "\n", 
+   "\[IndentingNewLine]", 
+   RowBox[{"(*", 
+    RowBox[{
+     RowBox[{"Analiza", " ", "teoretyczna"}], "-", 
+     RowBox[{"obliczenie", " ", "dok\[LSlash]adnej", " ", "warto\:015bci"}]}],
+     "*)"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"x", "=", "0.01"}], ";"}], "\n", 
+   RowBox[{
+    RowBox[{"dokladna", "=", 
+     RowBox[{
+      RowBox[{"Sqrt", "[", 
+       RowBox[{
+        RowBox[{"12150", " ", 
+         RowBox[{"x", "^", "15"}]}], "+", "9"}], "]"}], "-", 
+      RowBox[{"3", "/", 
+       RowBox[{"x", "^", "15"}]}]}]}], ";"}], "\n", 
+   RowBox[{
+    RowBox[{"Print", "[", 
+     RowBox[{
+     "\"\<Dok\[LSlash]adna warto\:015b\[CAcute] f(0.01) (symbolicznie): \>\"",
+       ",", "dokladna"}], "]"}], ";"}], "\n", "\[IndentingNewLine]", 
+   RowBox[{"(*", 
+    RowBox[{
+    "Przekszta\[LSlash]cenie", " ", "dla", " ", "wi\:0119kszej", " ", 
+     "dok\[LSlash]adno\:015bci"}], "*)"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"przeksztalcenie", "[", "x_", "]"}], ":=", 
+     RowBox[{
+      RowBox[{"(", 
+       RowBox[{
+        RowBox[{"12150", " ", 
+         RowBox[{"x", "^", "15"}]}], "+", "9", "-", 
+        RowBox[{"9", "/", 
+         RowBox[{"x", "^", "30"}]}]}], ")"}], "/", 
+      RowBox[{"(", 
+       RowBox[{
+        RowBox[{"Sqrt", "[", 
+         RowBox[{
+          RowBox[{"12150", " ", 
+           RowBox[{"x", "^", "15"}]}], "+", "9"}], "]"}], "+", 
+        RowBox[{"3", "/", 
+         RowBox[{"x", "^", "15"}]}]}], ")"}]}]}], ";"}], "\n", 
+   RowBox[{
+    RowBox[{"wynikPoprawiony", "=", 
+     RowBox[{"przeksztalcenie", "[", "0.01", "]"}]}], ";"}], "\n", 
+   RowBox[{
+    RowBox[{"Print", "[", 
+     RowBox[{
+     "\"\<Warto\:015b\[CAcute] po przekszta\[LSlash]ceniu (standardowa \
+precyzja): \>\"", ",", 
+      RowBox[{"N", "[", 
+       RowBox[{"wynikPoprawiony", ",", "20"}], "]"}]}], "]"}], ";"}], "\n", 
+   "\[IndentingNewLine]", 
+   RowBox[{"(*", 
+    RowBox[{"Wykorzystanie", " ", "wysokiej", " ", "precyzji"}], "*)"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"SetPrecision", "[", 
+     RowBox[{"wynikPoprawiony", ",", "50"}], "]"}], ";"}], "\n", 
+   RowBox[{
+    RowBox[{"Print", "[", 
+     RowBox[{
+     "\"\<Warto\:015b\[CAcute] z wysok\:0105 precyzj\:0105 (50 cyfr): \>\"", 
+      ",", 
+      RowBox[{"N", "[", 
+       RowBox[{
+        RowBox[{"przeksztalcenie", "[", "0.01", "]"}], ",", "50"}], "]"}]}], 
+     "]"}], ";"}], "\n", "\[IndentingNewLine]", 
+   RowBox[{"(*", 
+    RowBox[{
+    "Eksperymenty", " ", "numeryczne", " ", "dla", " ", 
+     "r\[OAcute]\:017cnych", " ", "x"}], "*)"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"tabela", "=", 
+     RowBox[{"Table", "[", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"x", ",", 
+         RowBox[{"f", "[", "x", "]"}], ",", 
+         RowBox[{"przeksztalcenie", "[", "x", "]"}]}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"x", ",", 
+         RowBox[{"{", 
+          RowBox[{"0.01", ",", "0.001", ",", "0.0001"}], "}"}]}], "}"}]}], 
+      "]"}]}], ";"}], "\n", 
+   RowBox[{
+    RowBox[{"Print", "[", 
+     RowBox[{"\"\<Tabela warto\:015bci dla r\[OAcute]\:017cnych x: \>\"", ",", 
+      RowBox[{"TableForm", "[", 
+       RowBox[{"tabela", ",", 
+        RowBox[{"TableHeadings", "->", 
+         RowBox[{"{", 
+          RowBox[{"None", ",", 
+           RowBox[{"{", 
+            RowBox[{
+            "\"\<x\>\"", ",", "\"\<f(x)\>\"", ",", 
+             "\"\<przekszta\[LSlash]cenie(x)\>\""}], "}"}]}], "}"}]}]}], 
+       "]"}]}], "]"}], ";"}]}]}]], "Input",
+ CellChangeTimes->{{3.969947871704834*^9, 3.969947871705464*^9}, {
+  3.969947934642665*^9, 3.969947937528303*^9}},
+ CellLabel->"In[14]:=",ExpressionUUID->"9c3b868b-16a4-4114-a198-c152a010af39"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Warto\:015b\[CAcute] f(0.01) w standardowej precyzji: \"\>", 
+   "\[InvisibleSpace]", "0.`"}],
+  SequenceForm["Warto\:015b\[CAcute] f(0.01) w standardowej precyzji: ", 0.],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.969947901591525*^9, 3.969947940507613*^9},
+ CellLabel->
+  "During evaluation of \
+In[14]:=",ExpressionUUID->"095079bc-34da-45a2-8222-536e5e78a22f"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Dok\[LSlash]adna warto\:015b\[CAcute] f(0.01) (symbolicznie): \
+\"\>", "\[InvisibleSpace]", 
+   RowBox[{"-", "2.999999999999999`*^30"}]}],
+  SequenceForm[
+  "Dok\[LSlash]adna warto\:015b\[CAcute] f(0.01) (symbolicznie): ", \
+-2.999999999999999*^30],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.969947901591525*^9, 3.969947940508464*^9},
+ CellLabel->
+  "During evaluation of \
+In[14]:=",ExpressionUUID->"e692bbec-3c24-47f1-86d3-69f4a28c5fd9"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Warto\:015b\[CAcute] po przekszta\[LSlash]ceniu (standardowa \
+precyzja): \"\>", "\[InvisibleSpace]", 
+   RowBox[{"-", "2.999999999999999`*^30"}]}],
+  SequenceForm[
+  "Warto\:015b\[CAcute] po przekszta\[LSlash]ceniu (standardowa precyzja): ", \
+-2.999999999999999*^30],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.969947901591525*^9, 3.9699479405095797`*^9},
+ CellLabel->
+  "During evaluation of \
+In[14]:=",ExpressionUUID->"8f0d7dd4-6e72-4389-8c70-b7c46ac23d9c"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Warto\:015b\[CAcute] z wysok\:0105 precyzj\:0105 (50 cyfr): \"\
+\>", "\[InvisibleSpace]", 
+   RowBox[{"-", "2.999999999999999`*^30"}]}],
+  SequenceForm[
+  "Warto\:015b\[CAcute] z wysok\:0105 precyzj\:0105 (50 cyfr): ", \
+-2.999999999999999*^30],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.969947901591525*^9, 3.9699479405104513`*^9},
+ CellLabel->
+  "During evaluation of \
+In[14]:=",ExpressionUUID->"5619535c-bd1e-4fc7-89f6-626eff11069b"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Tabela warto\:015bci dla r\[OAcute]\:017cnych x: \"\>", 
+   "\[InvisibleSpace]", 
+   TagBox[
+    TagBox[GridBox[{
+       {
+        TagBox["\<\"x\"\>",
+         HoldForm], 
+        TagBox["\<\"f(x)\"\>",
+         HoldForm], 
+        TagBox["\<\"przekszta\[LSlash]cenie(x)\"\>",
+         HoldForm]},
+       {"0.01`", "0.`", 
+        RowBox[{"-", "2.999999999999999`*^30"}]},
+       {"0.001`", "0.`", 
+        RowBox[{"-", "2.9999999999999995`*^45"}]},
+       {"0.0001`", "0.`", 
+        RowBox[{"-", "3.`*^60"}]}
+      },
+      GridBoxAlignment->{"Columns" -> {{Left}}, "Rows" -> {{Baseline}}},
+      GridBoxDividers->{
+       "Columns" -> {{False}}, "Rows" -> {False, True, {False}, False}},
+      GridBoxSpacings->{"Columns" -> {
+          Offset[0.27999999999999997`], {
+           Offset[2.0999999999999996`]}, 
+          Offset[0.27999999999999997`]}, "Rows" -> {
+          Offset[0.2], {
+           Offset[0.4]}, 
+          Offset[0.2]}}],
+     {None, OutputFormsDump`HeadedColumns}],
+    Function[BoxForm`e$, 
+     TableForm[
+     BoxForm`e$, 
+      TableHeadings -> {
+       None, {"x", "f(x)", "przekszta\[LSlash]cenie(x)"}}]]]}],
+  SequenceForm["Tabela warto\:015bci dla r\[OAcute]\:017cnych x: ", 
+   TableForm[{{0.01, 0., -2.999999999999999*^30}, {0.001, 
+    0., -2.9999999999999995`*^45}, {0.0001, 0., -3.*^60}}, 
+    TableHeadings -> {None, {"x", "f(x)", "przekszta\[LSlash]cenie(x)"}}]],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.969947901591525*^9, 3.969947940511499*^9},
+ CellLabel->
+  "During evaluation of \
+In[14]:=",ExpressionUUID->"82dd36cd-6783-494d-980f-1e2207353546"]
+}, Open  ]]
+}, Open  ]]
+},
+WindowSize->{2578.5, 1052.25},
+WindowMargins->{{1440, -2578.5}, {Automatic, 0}},
+FrontEndVersion->"14.1 for Linux x86 (64-bit) (July 16, 2024)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"d597345f-882d-40be-9fab-8aee66631ca4"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[1482, 35, 4560, 130, 447, "Input",ExpressionUUID->"9c3b868b-16a4-4114-a198-c152a010af39"],
+Cell[CellGroupData[{
+Cell[6067, 169, 420, 9, 23, "Print",ExpressionUUID->"095079bc-34da-45a2-8222-536e5e78a22f"],
+Cell[6490, 180, 497, 12, 23, "Print",ExpressionUUID->"e692bbec-3c24-47f1-86d3-69f4a28c5fd9"],
+Cell[6990, 194, 519, 12, 23, "Print",ExpressionUUID->"8f0d7dd4-6e72-4389-8c70-b7c46ac23d9c"],
+Cell[7512, 208, 495, 12, 23, "Print",ExpressionUUID->"5619535c-bd1e-4fc7-89f6-626eff11069b"],
+Cell[8010, 222, 1649, 44, 73, "Print",ExpressionUUID->"82dd36cd-6783-494d-980f-1e2207353546"]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+
