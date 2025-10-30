@@ -1,0 +1,6 @@
+[package]
+name = "fractal_generator_single"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
