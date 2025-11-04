@@ -1,1 +1,0 @@
-/home/zhyrkom/Documents/study_repo/uwr_3sem/wdr/prac4/fractal_generator_single/target/release/fractal_generator_single: /home/zhyrkom/Documents/study_repo/uwr_3sem/wdr/prac4/fractal_generator_single/src/main.rs
