@@ -1,0 +1,6 @@
+Script started on 2025-11-05 17:04:01+01:00 [COMMAND="dash" TERM="xterm-kitty" TTY="/dev/pts/0" COLUMNS="146" LINES="38"]
+$ ls
+script.log  test2  timing  typescript
+$ exit 42
+
+Script done on 2025-11-05 17:04:05+01:00 [COMMAND_EXIT_CODE="42"]
