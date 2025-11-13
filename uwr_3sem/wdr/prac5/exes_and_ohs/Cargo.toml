@@ -1,0 +1,6 @@
+[package]
+name = "exes_and_ohs"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
