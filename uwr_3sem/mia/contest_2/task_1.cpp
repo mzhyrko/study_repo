@@ -4,62 +4,76 @@ using namespace std;
 int main() {
     ios::sync_with_stdio(false);
     cin.tie(nullptr);
-
+    
     int t;
-    if (!(cin >> t)) return 0;
-    while (t--) {
+    cin >> t;
+
+    for (int test = 0; test < t; ++test) {
         int n;
         cin >> n;
-        vector<int> a(n);
-        for (int i = 0; i < n; ++i) 
-            cin >> a[i];
 
-        vector<vector<int>> pos(n + 1);
+        vector<long long> min1(n, LLONG_MAX);
+        vector<long long> min2(n, LLONG_MAX);
+
+        long long sum_min2 = 0;                 
+        long long smallest_min1 = LLONG_MAX;     
+        int idx_smallest_min1 = -1;              
+
         for (int i = 0; i < n; ++i) {
-            int v = a[i];
-            if (1 <= v && v <= n) pos[v].push_back(i);
-        }
+            int m;
+            cin >> m;
+            for (int j = 0; j < m; ++j) {
+                long long val;
+                cin >> val;
+                if (val < min1[i]) {
+                    min2[i] = min1[i];
+                    min1[i] = val;
+                } else if (val < min2[i]) {
+                    min2[i] = val;
+                }
+            }
+            
+            sum_min2 += min2[i];
 
-        vector<Interval> intervals;
-        intervals.reserve(n);
-        for (int v = 1; v <= n; ++v) {
-            const auto &p = pos[v];
-            int m = (int)p.size();
-            if (m < v) continue;
-            for (int j = 0; j + v - 1 < m; ++j) {
-                int L = p[j];
-                int R = p[j + v - 1];
-                intervals.push_back({L, R, v});
+            
+            if (min1[i] < smallest_min1 || (min1[i] == smallest_min1 && 
+                (idx_smallest_min1 == -1 || min2[i] < min2[idx_smallest_min1]))) {
+                smallest_min1 = min1[i];
+                idx_smallest_min1 = i;
             }
         }
 
-        if (intervals.empty()) {
-            cout << 0 << '\n';
+        if (n == 1) {
+            cout << min1[0] << '\n';
             continue;
         }
 
-        sort(intervals.begin(), intervals.end(), [](const Interval &x, const Interval &y) {
-            if (x.R != y.R) return x.R < y.R;
-            if (x.L != y.L) return x.L < y.L;
-            return x.w < y.w;
-        });
-
-        int m = (int)intervals.size();
-        vector<int> ends(m);
-        for (int i = 0; i < m; ++i) ends[i] = intervals[i].R;
-
+        long long answer = 0;
         
-        vector<int> dp(m + 1, 0);
-        for (int i = 1; i <= m; ++i) {
-            const auto &cur = intervals[i - 1];
+        for (int trash = 0; trash < n; ++trash) {
+           
+            long long trash_min = min1[trash];
+            vector<long long> removed_elements;
+            long long sum_others = 0;
             
-            int p = upper_bound(ends.begin(), ends.end(), cur.L - 1) - ends.begin();
+            for (int i = 0; i < n; ++i) {
+                if (i != trash) {
+
+                    sum_others += min2[i];
+                    removed_elements.push_back(min1[i]);
+                }
+            }
             
-            dp[i] = max(dp[i - 1], dp[p] + cur.w);
+            for (auto elem : removed_elements) {
+                trash_min = min(trash_min, elem);
+            }
+            
+            long long candidate = trash_min + sum_others;
+            answer = max(answer, candidate);
         }
-
-        cout << dp[m] << '\n';
+        
+        cout << answer << '\n';
     }
-
+    
     return 0;
 }
