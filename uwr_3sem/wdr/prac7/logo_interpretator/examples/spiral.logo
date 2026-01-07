@@ -1,0 +1,10 @@
+; Spiral pattern
+clearscreen
+setpencolor blue
+
+make "size 5
+repeat 50 [
+  forward :size
+  right 90
+  make "size :size + 3
+]

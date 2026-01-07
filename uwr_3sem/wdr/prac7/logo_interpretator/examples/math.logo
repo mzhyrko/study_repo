@@ -1,0 +1,16 @@
+; Math operations test
+clearscreen
+setpencolor black
+
+; Calculate and draw based on math
+make "angle 45
+make "distance 100
+make "calculated sqrt 10000
+
+forward :calculated
+right :angle
+forward :distance
+
+; Print some values
+print :calculated
+print :angle

@@ -1,0 +1,9 @@
+; Equilateral triangle
+clearscreen
+setpencolor green
+setpensize 3
+
+repeat 3 [
+  forward 120
+  right 120
+]

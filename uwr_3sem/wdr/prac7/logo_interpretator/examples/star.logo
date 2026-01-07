@@ -1,0 +1,9 @@
+; Five-pointed star
+clearscreen
+setpencolor red
+setpensize 2
+
+repeat 5 [
+  forward 100
+  right 144
+]

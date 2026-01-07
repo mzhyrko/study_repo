@@ -1,0 +1,11 @@
+; Flower pattern
+clearscreen
+setpencolor purple
+
+repeat 36 [
+  repeat 4 [
+    forward 50
+    right 90
+  ]
+  right 10
+]

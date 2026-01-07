@@ -1,50 +1,5 @@
-   0.030732488s  INFO prepare_target{force=false package_id=seq_class v0.1.0 (/home/zhyrkom/Documents/study_repo/uwr_3sem/wdr/prac5/seq_class) target="seq_class"}: cargo::core::compiler::fingerprint: fingerprint error for seq_class v0.1.0 (/home/zhyrkom/Documents/study_repo/uwr_3sem/wdr/prac5/seq_class)/Check { test: false }/TargetInner { name: "seq_class", doc: true, ..: with_path("/home/zhyrkom/Documents/study_repo/uwr_3sem/wdr/prac5/seq_class/src/main.rs", Edition2024) }
-   0.030781278s  INFO prepare_target{force=false package_id=seq_class v0.1.0 (/home/zhyrkom/Documents/study_repo/uwr_3sem/wdr/prac5/seq_class) target="seq_class"}: cargo::core::compiler::fingerprint:     err: failed to read `/home/zhyrkom/Documents/study_repo/uwr_3sem/wdr/prac5/seq_class/target/debug/.fingerprint/seq_class-8f3e46b74d02bb89/bin-seq_class`
-
-Caused by:
-    No such file or directory (os error 2)
-
-Stack backtrace:
-   0: cargo_util::paths::read_bytes
-   1: cargo_util::paths::read
-   2: cargo::core::compiler::fingerprint::_compare_old_fingerprint
-   3: cargo::core::compiler::fingerprint::prepare_target
-   4: cargo::core::compiler::compile
-   5: <cargo::core::compiler::build_runner::BuildRunner>::compile
-   6: cargo::ops::cargo_compile::compile_ws
-   7: cargo::ops::cargo_compile::compile_with_exec
-   8: cargo::ops::cargo_compile::compile
-   9: cargo::commands::check::exec
-  10: <cargo::cli::Exec>::exec
-  11: cargo::main
-  12: std::sys::backtrace::__rust_begin_short_backtrace::<fn(), ()>
-  13: std::rt::lang_start::<()>::{closure#0}
-  14: core::ops::function::impls::<impl core::ops::function::FnOnce<A> for &F>::call_once
-             at /rustc/1159e78c4747b02ef996e55082b704c09b970588/library/core/src/ops/function.rs:290:21
-  15: std::panicking::catch_unwind::do_call
-             at /rustc/1159e78c4747b02ef996e55082b704c09b970588/library/std/src/panicking.rs:589:40
-  16: std::panicking::catch_unwind
-             at /rustc/1159e78c4747b02ef996e55082b704c09b970588/library/std/src/panicking.rs:552:19
-  17: std::panic::catch_unwind
-             at /rustc/1159e78c4747b02ef996e55082b704c09b970588/library/std/src/panic.rs:359:14
-  18: std::rt::lang_start_internal::{{closure}}
-             at /rustc/1159e78c4747b02ef996e55082b704c09b970588/library/std/src/rt.rs:175:24
-  19: std::panicking::catch_unwind::do_call
-             at /rustc/1159e78c4747b02ef996e55082b704c09b970588/library/std/src/panicking.rs:589:40
-  20: std::panicking::catch_unwind
-             at /rustc/1159e78c4747b02ef996e55082b704c09b970588/library/std/src/panicking.rs:552:19
-  21: std::panic::catch_unwind
-             at /rustc/1159e78c4747b02ef996e55082b704c09b970588/library/std/src/panic.rs:359:14
-  22: std::rt::lang_start_internal
-             at /rustc/1159e78c4747b02ef996e55082b704c09b970588/library/std/src/rt.rs:171:5
-  23: main
-  24: __libc_start_call_main
-             at ./csu/../sysdeps/nptl/libc_start_call_main.h:58:16
-  25: __libc_start_main_impl
-             at ./csu/../csu/libc-start.c:360:3
-  26: <unknown>
-   0.200869000s  INFO prepare_target{force=false package_id=seq_class v0.1.0 (/home/zhyrkom/Documents/study_repo/uwr_3sem/wdr/prac5/seq_class) target="seq_class"}: cargo::core::compiler::fingerprint: fingerprint error for seq_class v0.1.0 (/home/zhyrkom/Documents/study_repo/uwr_3sem/wdr/prac5/seq_class)/Check { test: true }/TargetInner { name: "seq_class", doc: true, ..: with_path("/home/zhyrkom/Documents/study_repo/uwr_3sem/wdr/prac5/seq_class/src/main.rs", Edition2024) }
-   0.200911418s  INFO prepare_target{force=false package_id=seq_class v0.1.0 (/home/zhyrkom/Documents/study_repo/uwr_3sem/wdr/prac5/seq_class) target="seq_class"}: cargo::core::compiler::fingerprint:     err: failed to read `/home/zhyrkom/Documents/study_repo/uwr_3sem/wdr/prac5/seq_class/target/debug/.fingerprint/seq_class-9bb36b747b3d03e4/test-bin-seq_class`
+   0.037107707s  INFO prepare_target{force=false package_id=seq_class v0.1.0 (/home/zhyrkom/Documents/study_repo/uwr_3sem/wdr/prac5/seq_class) target="seq_class"}: cargo::core::compiler::fingerprint: fingerprint error for seq_class v0.1.0 (/home/zhyrkom/Documents/study_repo/uwr_3sem/wdr/prac5/seq_class)/Check { test: false }/TargetInner { name: "seq_class", doc: true, ..: with_path("/home/zhyrkom/Documents/study_repo/uwr_3sem/wdr/prac5/seq_class/src/main.rs", Edition2024) }
+   0.037161696s  INFO prepare_target{force=false package_id=seq_class v0.1.0 (/home/zhyrkom/Documents/study_repo/uwr_3sem/wdr/prac5/seq_class) target="seq_class"}: cargo::core::compiler::fingerprint:     err: failed to read `/home/zhyrkom/Documents/study_repo/uwr_3sem/wdr/prac5/seq_class/target/debug/.fingerprint/seq_class-8f3e46b74d02bb89/bin-seq_class`
 
 Caused by:
     No such file or directory (os error 2)
@@ -90,4 +45,3 @@ Stack backtrace:
   26: <unknown>
     Checking seq_class v0.1.0 (/home/zhyrkom/Documents/study_repo/uwr_3sem/wdr/prac5/seq_class)
 error: could not compile `seq_class` (bin "seq_class") due to 1 previous error
-warning: build failed, waiting for other jobs to finish...

@@ -1,0 +1,18 @@
+; Multiple circles using polygons
+clearscreen
+setpencolor blue
+
+; Draw approximated circle
+make "radius 50
+repeat 3 [
+  penup
+  setxy 0 0
+  right 120
+  pendown
+  
+  setpencolor red
+  repeat 36 [
+    forward 8
+    right 10
+  ]
+]

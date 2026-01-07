@@ -1,0 +1,13 @@
+Zadanie 6 
+
+Program «stralloc» implementuje algorytm zarządzania pamięcią wyspecjalizowany pod kątem przydziału miejsca dla ciągów znakowych nie dłuższych niż «MAX_LENGTH». Ponieważ algorytm wie, że w blokach będą składowane ciągi znakowe, to nie musi dbać o wyrównanie adresu zwracanego przez procedurę «stralloc».
+
+Podobnie jak w programie «objpool» będziemy zarządzać pamięcią dostępną za nagłówkiem areny. W obszarze tym zakodujemy niejawną listę (implicit list) jednokierunkową, której węzły są kodowane w pierwszym bajcie bloku. Wartość bezwzględna nagłówka bloku wyznacza jego długość, a znak dodatni i ujemny kodują to czy blok jest wolny, czy zajęty. Nagłówek bloku o wartości zero koduje koniec listy. Ponieważ domyślnie arena ma długość 65536 bajtów to procedura «init_chunk» musi wypełnić zarządzany obszar wolnymi blokami nie większymi niż «MAX_LENGTH+1».
+
+Twoim zadaniem jest uzupełnienie brakujących fragmentów procedur «alloc_block» i «strfree». Pierwsza z nich jest zdecydowanie trudniejsza i wymaga obsłużenia aż pięciu przypadków. Będzie trzeba dzielić bloki (splitting), złączać (coalescing) lub zmieniać rozmiar dwóch występujących po sobie wolnych bloków, jeśli nie da się ich złączyć. Druga procedura jest dużo prostsza i zaledwie zmienia stan bloku upewniwszy się wcześniej, że użytkownik podał prawidłowy wskaźnik na blok.
+
+Przed przystąpieniem do rozwiązywania przemyśl dokładnie działanie procedur. Pomyłki będą ciężkie do znalezienia. Jedyną linią obrony będzie tutaj obfite sprawdzanie warunków wstępnych funkcją assert(3).
+
+Rozważ następujący scenariusz: program poprosił o blok długości n (zamiast n + 1), po czym wpisał tam n znaków i zakończył ciąg zerem. Co się stanie z naszym algorytmem? Czy da się wykryć taki błąd?
+
+Komentarz: Celem tego zdania jest przygotowanie Was do implementacji poważniejszego algorytmu zarządzania pamięcią, który będzie treścią drugiego projektu programistycznego. Potraktujcie je jako wprawkę!
