@@ -7,72 +7,46 @@ int main() {
     
     int t;
     cin >> t;
-
-    for (int test = 0; test < t; ++test) {
+    
+    while (t--) {
         int n;
         cin >> n;
-
-        vector<long long> min1(n, LLONG_MAX);
-        vector<long long> min2(n, LLONG_MAX);
-
-        long long sum_min2 = 0;                 
-        long long smallest_min1 = LLONG_MAX;     
-        int idx_smallest_min1 = -1;              
-
+        
+        long long sum_sec = 0;
+        long long min_sec = LLONG_MAX;           // самый маленький второй минимум
+        
+        vector<long long> mins(n);
+        
         for (int i = 0; i < n; ++i) {
             int m;
             cin >> m;
+            
+            long long mn1 = LLONG_MAX;
+            long long mn2 = LLONG_MAX;
+            
             for (int j = 0; j < m; ++j) {
-                long long val;
-                cin >> val;
-                if (val < min1[i]) {
-                    min2[i] = min1[i];
-                    min1[i] = val;
-                } else if (val < min2[i]) {
-                    min2[i] = val;
+                long long x;
+                cin >> x;
+                if (x < mn1) {
+                    mn2 = mn1;
+                    mn1 = x;
+                } else if (x < mn2) {
+                    mn2 = x;
                 }
             }
             
-            sum_min2 += min2[i];
-
-            
-            if (min1[i] < smallest_min1 || (min1[i] == smallest_min1 && 
-                (idx_smallest_min1 == -1 || min2[i] < min2[idx_smallest_min1]))) {
-                smallest_min1 = min1[i];
-                idx_smallest_min1 = i;
-            }
+            mins[i] = mn1;
+            sum_sec += mn2;
+            min_sec = min(min_sec, mn2);
         }
-
+        
+        long long global_min = *min_element(mins.begin(), mins.end());
+        
         if (n == 1) {
-            cout << min1[0] << '\n';
-            continue;
+            cout << global_min << '\n';
+        } else {
+            cout << global_min + sum_sec - min_sec << '\n';
         }
-
-        long long answer = 0;
-        
-        for (int trash = 0; trash < n; ++trash) {
-           
-            long long trash_min = min1[trash];
-            vector<long long> removed_elements;
-            long long sum_others = 0;
-            
-            for (int i = 0; i < n; ++i) {
-                if (i != trash) {
-
-                    sum_others += min2[i];
-                    removed_elements.push_back(min1[i]);
-                }
-            }
-            
-            for (auto elem : removed_elements) {
-                trash_min = min(trash_min, elem);
-            }
-            
-            long long candidate = trash_min + sum_others;
-            answer = max(answer, candidate);
-        }
-        
-        cout << answer << '\n';
     }
     
     return 0;
